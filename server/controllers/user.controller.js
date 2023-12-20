@@ -1,7 +1,6 @@
 const { CatchAsyncError } = require("../middlewares/CatchAsyncError.js");
 const User = require("../models/User.js");
-//const createError = require("../utils/createError.js");
-//const { sendNotificationToUser } = require("../utils/notifications");
+
 
 const register = CatchAsyncError(async (req, res) => {
   const { username,  email, password, age } = req.body;

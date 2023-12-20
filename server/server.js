@@ -7,8 +7,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 
 const connectToDB = require("./middlewares/dbConnect.js");
-// const indexRouter = require("./routes/index.routes.js");
-// const testRouter = require("./routes/test.routes.js");
+
 
 const indexRouter = require("./routes/user.route.js");
 dotenv.config({ path: "./config/config.env" }); // Adjust the path as needed
@@ -16,7 +15,6 @@ dotenv.config({ path: "./config/config.env" }); // Adjust the path as needed
 // Create an Express app
 const app = express();
 const port = process.env.PORT || 8080;
-// const { createAdminUserIfNotExist } = require("./utils/adminUtils.js");
 
 
 
@@ -44,7 +42,7 @@ app.use((err, rea, res, next) => {
   return res.status(errorStatus).json(errorMessage);
 });
 // Create admin user if not exist
-// createAdminUserIfNotExist();
+
 
 app.listen(port, () => {
   console.log(`Server listening successfully on http://localhost:${port}`);
