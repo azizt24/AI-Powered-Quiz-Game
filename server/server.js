@@ -32,8 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // Parse request bodies for 
 
 
 // Routes
-// app.use("/api", indexRouter);
-// app.use("/", testRouter);
+
 app.use("/api/auth", indexRouter);
 
 app.use((err, rea, res, next) => {
@@ -41,7 +40,6 @@ app.use((err, rea, res, next) => {
   const errorMessage = err.message || "something went wrong!";
   return res.status(errorStatus).json(errorMessage);
 });
-// Create admin user if not exist
 
 
 app.listen(port, () => {
