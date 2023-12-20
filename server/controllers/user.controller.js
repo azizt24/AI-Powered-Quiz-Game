@@ -6,9 +6,7 @@ const User = require("../models/User.js");
 const register = CatchAsyncError(async (req, res) => {
   const { username,  email, password, age } = req.body;
   console.log(req.body)
-  if (!fullName) {
-    return res.status(400).json({ message: "fullName is required" });
-  }
+ 
   if (await User.findOne({ username })) {
     return res.status(400).json({ message: "username already in use" });
   }
