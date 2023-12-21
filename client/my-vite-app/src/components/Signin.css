@@ -1,0 +1,91 @@
+@font-face {
+    font-family: "poppins";
+    src: url("../assets/fonts/Poppins/Poppins-Medium.ttf");
+}
+
+.signin-container {
+    background-color: #adadad;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    font-family: "poppins";
+}
+
+.signin-container h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #555;
+    text-align: left;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.signin-container button {
+    width: 100%;
+    /* Set the width to 100% */
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.signin-container button:hover {
+    background-color: #2980b9;
+}
+
+.signup-link {
+    color: #555;
+    font-size: 14px;
+}
+
+.signup-link a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    font-size: 15px;
+    color: red;
+}
+
+.user-profile-sign button {
+    margin: auto;
+    font-family: "poppins";
+    margin-left: 590px;
+    margin-bottom: 30px;
+
+}
