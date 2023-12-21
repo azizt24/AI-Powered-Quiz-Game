@@ -1,47 +1,38 @@
-const dotenv = require("dotenv");
-const http = require("http");
-const express = require("express");
-const cors = require("cors");
-const helmet = require("helmet");
-const morgan = require("morgan");
-const bodyParser = require("body-parser");
+// server.js
+import express from "express";
+import morgan from "morgan";
+import cors from "cors";
+import { config } from "dotenv";
+import connect from "../server/database/conn.js";
+import qaRoute from "../server/routes/qaRoute.js";
 
-const connectToDB = require("./middlewares/dbConnect.js");
-
-
-const indexRouter = require("./routes/user.route.js");
-dotenv.config({ path: "./config/config.env" }); // Adjust the path as needed
-
-// Create an Express app
 const app = express();
-const port = process.env.PORT || 8080;
 
+const LOGGING_FORMAT = "tiny";
+const PORT = process.env.PORT || 4000;
+const API_PREFIX = "/api";
 
-
-// Connect to MongoDB
-connectToDB();
-
-// Middlewares
+app.use(morgan(LOGGING_FORMAT));
+app.use(cors());
 app.use(express.json());
-app.use(cors({ origin: "*" })); // Allow requests from any origin
-app.use(helmet()); // Enhance security by setting various HTTP headers
+config();
 
-app.use(morgan("dev")); // Log HTTP requests
-app.use(bodyParser.json()); // Parse request bodies for JSON
-app.use(bodyParser.urlencoded({ extended: true })); // Parse request bodies for x-www-form-urlencoded
+app.use(API_PREFIX, qaRoute);
 
-
-// Routes
-
-app.use("/api/auth", indexRouter);
-
-app.use((err, rea, res, next) => {
-  const errorStatus = err.code || 500;
-  const errorMessage = err.message || "something went wrong!";
-  return res.status(errorStatus).json(errorMessage);
+app.get("/", (req, res) => {
+  res.json("Get Request");
 });
 
+connect()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server connected to http://localhost:${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.log("Invalid Database Connection");
+  });
 
-app.listen(port, () => {
-  console.log(`Server listening successfully on http://localhost:${port}`);
+process.on("unhandledRejection", (reason, promise) => {
+  console.error("Unhandled Rejection at:", promise, "reason:", reason);
 });
